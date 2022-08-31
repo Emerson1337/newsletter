@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package subscriptions;
+
+import "google/protobuf/empty.proto";
+
+enum SubStatus {
+    UNAVAILABLE = 0;
+    AVAILABLE = 1;
+}
+
+message Subscriber {
+    string secure_id = 1;
+    string name = 2;
+    string email = 3;
+    int32 status = 4;
+}
+
+message SubRequest {
+    string name = 1;
+    string email = 2;
+}
+
+service Subscription {
+    rpc SubscribeUser(SubRequest) returns (Subscriber) {};
+} 
